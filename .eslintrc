@@ -13,7 +13,10 @@
         "prefer-const": "off",
         "quotes": "off",
         "eol-last": "off",
-        "comma-dangle":"off"
+
+
+        "comma-dangle": "off"
+
     },
     "extends": ["eslint:recommended", "google"]
 }
