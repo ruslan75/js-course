@@ -12,7 +12,8 @@
         "linebreak-style": "off",
         "prefer-const": "off",
         "quotes": "off",
-        "eol-last": "off"
+        "eol-last": "off",
+        "comma-dangle":"off"
     },
     "extends": ["eslint:recommended", "google"]
 }
