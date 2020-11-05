@@ -13,10 +13,12 @@
         "prefer-const": "off",
         "quotes": "off",
         "eol-last": "off",
-
-
-        "comma-dangle": "off"
-
+        "require-jsdoc": "off",
+        "no-undef":"off",
+        "comma-dangle": "off",
+        "operator-linebreak": "off",
+        "no-debugger": "off",
+        "brace-style": "off"
     },
     "extends": ["eslint:recommended", "google"]
 }
