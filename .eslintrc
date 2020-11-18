@@ -18,7 +18,9 @@
         "comma-dangle": "off",
         "operator-linebreak": "off",
         "no-debugger": "off",
-        "brace-style": "off"
+        "brace-style": "off",
+        "max-len": "off",
+        "one-var":"off"
     },
     "extends": ["eslint:recommended", "google"]
 }

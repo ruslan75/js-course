@@ -6,14 +6,15 @@ constructor(selector, options) {
     this.components = options.components || []
 }
 getRoot() {
-    const $root = $.creat('div', 'exel')
+    const $root = $.create('div', 'exel')
     this.components = this.components.map(Component => {
-        const $el = $.creat('div', Component.className)
+        const $el = $.create('div', Component.className)
          const component = new Component($el)
-         // debug
-         if (component.name) {
-             window['c' + component.name] = component
-         }
+        //     debug
+        //  if (component.name) {
+        //      console.log(window[component.name] = component)
+        //  }
+
          $el.html(component.toHTML())
          $root.append($el)
          return component

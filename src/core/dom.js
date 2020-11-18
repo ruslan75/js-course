@@ -1,4 +1,4 @@
-class Dom {
+export class Dom {
     constructor(selector) {
         this.$el = typeof selector === 'string'
          ? document.querySelector(selector)
@@ -11,13 +11,35 @@ class Dom {
         }
         return this.$el.outerHTML.trim()
     }
+    findAll(selector) {
+        return this.$el.querySelectorAll(selector)
+    }
+
+    get data() {
+        return this.$el.dataset
+      }
+
+    closest(selector) {
+        return $(this.$el.closest(selector))
+      }
+
+      getCoords() {
+        return this.$el.getBoundingClientRect()
+      }
+
+    toCss(styles = {}) {
+        Object
+            .keys(styles)
+            .forEach(key => {
+              this.$el.style[key] = styles[key]
+            })
+      }
 
     on(eventType, callback) {
         this.$el.addEventListener(eventType, callback)
     }
 
     off(eventType, callback) {
-        console.log('remove')
         this.$el.removeEventListener(eventType, callback)
     }
     clear() {
@@ -37,13 +59,14 @@ class Dom {
         }
         return this
     }
-}
+    }
 
 export function $(selector) {
     return new Dom(selector)
 }
 
-$.creat = (tageName, classes = '') => {
+
+$.create = (tageName, classes = '') => {
     const el = document.createElement(tageName)
     if (classes) {
         el.classList.add(classes)
