@@ -4,7 +4,7 @@ import {ExelComponent} from "../../core/ExelComponent";
         constructor($root) {
             super($root, {
                 name: 'Formula',
-                listeners: ['input', 'click']
+                listeners: ['input', 'click', 'blur']
             })
         }
         static className = 'excel__formula'
@@ -20,11 +20,11 @@ import {ExelComponent} from "../../core/ExelComponent";
             console.log('Formula: onIput', event.target.textContent.trim())
         }
 
-        onClick() {
-            console.log('kkr')
+        onClick(event) {
+            console.log(event.target)
         }
 
-        // onBlur() {
-        //     console.log('onblur')
-        // }
+        onBlur(event) {
+            console.log(event.target)
+        }
     }

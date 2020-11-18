@@ -3,25 +3,31 @@ const CODES = {
     Z: 90
 }
 
-function toColumn(col) {
-    return `
-    <div class="column">${col}</div>
-    `
-}
 
-function createRow(content, cell) {
+function toColumn(col, index) {
     return `
-    <div class="row">
-    <div class="row-info"></div>
+      <div class="column" data-type="resizable" data-col="${index}">
+        ${col}
+        <div class="col-resize" data-resize="col"></div>
+      </div>
+    `
+  }
+
+  function createRow(index, content) {
+    const resize = index ? '<div class="row-resize" data-resize="row"></div>' : ''
+    return `
+      <div class="row" data-type="resizable">
+        <div class="row-info">
+          ${index ? index : ''}
+          ${resize}
+        </div>
         <div class="row-data">${content}</div>
-    </div>${cell}   
+      </div>
     `
-}
-
-function toCell(cell, index) {
+  }
+function toCell(_, index) {
         return `
-        <div class="cell" contenteditable="">
-        ${cell = CODES.Z - CODES.A ? cell : ''}${index + 1}</div>
+        <div class="cell" data-col="${index}" contenteditable=""></div>
         `
 }
 
@@ -32,8 +38,6 @@ function tuChar(_, index) {
 export function creatTable(rowsCount = 10) {
     const colsCount = CODES.Z - CODES.A + 1
     const rows = []
-    const newCells = []
-    let newRows = []
 
     const cols = new Array(colsCount)
         .fill('')
@@ -41,23 +45,16 @@ export function creatTable(rowsCount = 10) {
         .map(toColumn)
         .join('')
 
-    const cells = new Array(colsCount)
-        .fill('')
-        .map(tuChar)
-        .map(toCell)
-        .join('')
-        for (let i = 1; i < rowsCount; i++) {
-             newCells.push(cells)
-            }
+        rows.push(createRow(null, cols))
 
-                newRows = newCells.map((elem, rowsCount) => {
-                    return `
-                    <div class="row">
-                        <div class="row-info">${rowsCount + 1}</div>
-                    ${elem}</div>
-                    `
-                }).join(' ')
+        for (let i = 0; i < rowsCount; i++) {
+            const cells = new Array(colsCount)
+                .fill('')
+                .map(toCell)
+                .join('')
 
-    rows.push(createRow(cols, newRows))
+            rows.push(createRow(i + 1, cells))
+          }
+
     return rows.join('')
 }
