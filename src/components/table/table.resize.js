@@ -4,7 +4,6 @@ import {$} from "../../core/dom"
 export const createResize = (e, $root) => {
      let delta
 
-if (e.target.dataset.resize) {
     const $target = $(e.target)
     const parent = $target.closest('[data-type="resizable"]')
     const coords = parent.getCoords()
@@ -53,6 +52,5 @@ if (e.target.dataset.resize) {
         [sideProp]: 0
       })
     }
-  }
 }
 
